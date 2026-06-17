@@ -26,7 +26,7 @@ class AnswerOption extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(
-            color: AppColors.primary.withOpacity(0.2),
+            color: AppColors.primary.withValues(alpha: 0.2),
           ),
           borderRadius: BorderRadius.circular(16),
         ),

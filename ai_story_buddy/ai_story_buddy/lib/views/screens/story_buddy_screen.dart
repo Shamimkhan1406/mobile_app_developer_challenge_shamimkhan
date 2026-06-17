@@ -33,8 +33,14 @@ class _StoryBuddyScreenState extends State<StoryBuddyScreen> {
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await context.read<StoryController>().initialize();
-      await context.read<QuizController>().loadQuiz();
+      final storyController = context.read<StoryController>();
+      final quizController = context.read<QuizController>();
+
+      await storyController.initialize();
+
+      if (!mounted) return;
+
+      await quizController.loadQuiz();
     });
   }
 
@@ -81,7 +87,7 @@ class _StoryBuddyScreenState extends State<StoryBuddyScreen> {
               width: 28,
               height: 28,
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(0.15),
+                color: AppColors.primary.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
