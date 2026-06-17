@@ -9,11 +9,11 @@ class TtsService {
     required Function(String message) onError,
   }) async {
     try {
-      await _flutterTts.setLanguage('en-US');
+      await _flutterTts.setLanguage('en-IN');
 
-      await _flutterTts.setPitch(1.1);
+      await _flutterTts.setPitch(1.0);
 
-      await _flutterTts.setSpeechRate(0.45);
+      await _flutterTts.setSpeechRate(0.40);
 
       _flutterTts.setStartHandler(() {
         onStart();
@@ -33,6 +33,9 @@ class TtsService {
 
   Future<void> speak(String text) async {
     await _flutterTts.stop();
+
+    await Future.delayed(const Duration(milliseconds: 300));
+
     await _flutterTts.speak(text);
   }
 

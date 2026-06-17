@@ -70,11 +70,53 @@ class _StoryBuddyScreenState extends State<StoryBuddyScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
-        title: const Text(AppStrings.appTitle),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: false,
+        surfaceTintColor: Colors.white,
+
+        title: Row(
+          children: [
+            Container(
+              width: 28,
+              height: 28,
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(0.15),
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+
+            const SizedBox(width: 12),
+
+            const Text(
+              'AI Story Buddy',
+              style: TextStyle(
+                color: AppColors.primary,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.account_circle_outlined,
+                color: AppColors.primary,
+              ),
+            ),
+          ),
+        ],
+
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1),
+          child: Container(height: 1, color: Colors.grey.shade200),
+        ),
       ),
+
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -113,12 +155,22 @@ class _StoryBuddyScreenState extends State<StoryBuddyScreen> {
                 ),
 
               if (storyController.state == StoryState.error)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: Text(
-                    storyController.errorMessage ?? AppStrings.errorMessage,
-                    style: const TextStyle(color: Colors.red),
-                  ),
+                Column(
+                  children: [
+                    Text(
+                      storyController.errorMessage ?? AppStrings.errorMessage,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<StoryController>().readStory();
+                      },
+                      child: const Text('Try Again'),
+                    ),
+                  ],
                 ),
 
               SizedBox(
