@@ -68,7 +68,6 @@ class _StoryBuddyScreenState extends State<StoryBuddyScreen> {
       _successShown = true;
 
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        debugPrint("CONFETTI PLAY");
         _confettiController.play();
       });
     }

@@ -1,11 +1,10 @@
-
-
 {
-  "question": "Which animal says meow?",
+  "question": "What colour was Pip the Robot's lost gear?",
   "options": [
-    "Dog",
-    "Cat",
-    "Tiger"
+    "Red",
+    "Green",
+    "Blue",
+    "Yellow"
   ],
-  "answer": "Cat"
+  "answer": "Blue"
 }
